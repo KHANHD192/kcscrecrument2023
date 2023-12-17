@@ -1,0 +1,53 @@
+# Ez_Ceasar 
+bài này mình stuck web quá nên vào xem thử -> thấy ceasar chắc dễ nên mới làm :> 
+đề cho mình một đoạn code python 
+```
+import string
+import random
+
+alphabet = string.ascii_letters + string.digits + "!{_}?"
+
+flag = 'KCSC{s0m3_r3ad4ble_5tr1ng_like_7his}'
+assert all(i in alphabet for i in flag)
+
+key = random.randint(0, 2**256)
+
+ct = ""
+for i in flag:
+    ct += (alphabet[(alphabet.index(i) + key) % len(alphabet)])
+
+print(f"{ct=}")
+
+# ct='ldtdMdEQ8F7NC8Nd1F88CSF1NF3TNdBB1O'
+```
+
+Đoạn mã thực hiện mã hóa một chuỗi văn bản flag bằng cách thêm một giá trị ngẫu nhiên key vào mỗi ký tự trong chuỗi flag
+
+mình sử dụng lại , thử từng key , ở đây mình đoán key=25 và thực hiện mã hóa đoạn ct đoạn cung cấp bằng cộng với key rồi mod theo độ dài của alphabet 
+
+```
+import string
+import random
+
+alphabet = string.ascii_letters + string.digits + "!{_}?"
+
+print(alphabet)
+print(len('kmnopqrstuvwxyzABCDEFGHIJ'))
+
+flag = 'KCSC{s0m3_r3ad4ble_5tr1ng_like_7his}'
+assert all(i in alphabet for i in flag)
+
+key = 25
+
+flag = ''
+ct = "ldtdMdEQ8F7NC8Nd1F88CSF1NF3TNdBB1O"
+for i in ct:
+    flag += (alphabet[(alphabet.index(i) + key) % len(alphabet)])
+
+print(f"{flag=}")
+```
+# FLAG 
+
+```
+KCSC{C3as4r_1s_Cl4ss1c4l_4nd_C00l}
+```
