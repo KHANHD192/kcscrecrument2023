@@ -22,7 +22,9 @@ mình đưa request sang repeater
 đuổi extension file thành .php 
 và nó vẫn success -> suy ra server filter qua $_FILE['file']['type']
 chính là header này 
+
 ![Alt text](image-6.png)
+
 giờ chỉ cần sửa content của file thành payload shell code php rồi up lên ! 
 payload :
 ```
