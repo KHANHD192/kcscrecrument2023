@@ -1,0 +1,31 @@
+# WarmupPHP 01 
+giao diện bài này như sau  : 
+![Alt text](image.png)
+nó lấy value của tham số xuống rồi thêm vào chuỗi bên dưới 
+Cái này mình nghĩ đến reflected XSS và SSTI 
+nhưng mà nếu reflected xss thì chả có gì để nói nên mình test SSTI trước 
+thử payload  :
+```
+?name={7*7}
+```
+output : 
+![Alt text](image-1.png)
+ô vậy là chắc chắn bị SSTI rồi giờ bước tiếp theo là detecd xem nó dùng tempate này để chúng ta injection đúng cú pháp  :>
+dựa vào đây 
+![Alt text](image-2.png)
+mình xác định được template dang dùng là *smarty(PHP)*
+giờ fuzz payload vào :  mình tìm đủ rồi mà vẫn stuck 
+(hoặc do mình gà chưa tìm đúng chỗ )
+mình check robots.txt (đáng lẽ phải infomation gathering trước , lỗi thật) thấy disable : ?source
+![Alt text](image-3.png)
+đang stuck mình vào thử ngay :>> 
+=> và nó chuyển ngay về trang cũ ( vậy là chắc chắn có header(loaction))
+dùng burp để bắt request =>
+![Alt text](image-4.png)
+và mình đã có source code "
+và điều mình chú ý là tác giả defind flag1 trong 1 hằng 
+![Alt text](image-5.png)
+OK giờ thì mình chỉ cần gọi nó ra thôi là có FLAG 
+![Alt text](image-6.png)
+# FLAG 
+KCSC{warmup01_begin_using_smarty}
