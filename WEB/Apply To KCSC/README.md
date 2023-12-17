@@ -40,4 +40,6 @@ grep -r "chuỗi_cần_tìm" /đường/dẫn/thư/mục
 payload của mình :
 ![Alt text](image-8.png)
 # FLAG 
-*KCSC{W3lc0m3_T0_KCSC_2023____}*
+```
+KCSC{W3lc0m3_T0_KCSC_2023____}
+```

