@@ -27,6 +27,9 @@ bởi vì server là apache **Server: Apache/2.4.57 (Debian)**
   <?php   system(\$_GET['cmd']); ?>
   ```
   - Làm sao trigger được *__ToString()* chạy được , ( mình  bị ngu đoạn này trong thời gian giải diễn ra @@ ), để ý src của  nó thì thấy khi isChampion của user -> true thì mình vào được và nó có nối chuỗi với $user->name ( sẽ ra sao nếu $user->name của mình chính là object của class Utils -> có phải nó sẽ trigger được toString không ?)
+  
+  ![Alt text](image-3.png)
+
   tiến mình ghép các payload lại hoàn chỉnh như sau  : 
 
   ![Alt text](image-1.png)
