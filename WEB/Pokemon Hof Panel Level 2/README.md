@@ -41,6 +41,8 @@ bởi vì server là apache **Server: Apache/2.4.57 (Debian)**
 
   ![Alt text](image-2.png)
   
+  ![Alt text](image-4.png)
+  
   giờ thì lấy flag ra thôi !
 
   # FLAG 
